@@ -62,7 +62,7 @@ CREATE TABLE public.job_seekers
     national_identity character varying(11) NOT NULL,
     date_of_birth date NOT NULL,
     PRIMARY KEY (user_id),
-	UNIQUE(national_identity)
+    UNIQUE(national_identity)
 );
 
 CREATE TABLE public.job_titles
