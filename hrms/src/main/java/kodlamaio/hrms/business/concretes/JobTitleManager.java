@@ -23,9 +23,4 @@ public class JobTitleManager implements JobTitleService {
 	public List<JobTitle> getAll() {
 		return this.jobTitleDao.findAll();
 	}
-
-	@Override
-	public JobTitle getById(int id) {
-		return this.jobTitleDao.getOne(id);
-	}
 }
