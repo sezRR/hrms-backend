@@ -11,7 +11,7 @@ CREATE TABLE public.candidate_users
     identity_number character varying(11) NOT NULL,
     date_of_birth date NOT NULL,
     PRIMARY KEY (id),
-	UNIQUE(identity_number)
+    UNIQUE(identity_number)
 );
 
 CREATE TABLE public.candidate_users_verify
@@ -54,7 +54,7 @@ CREATE TABLE public.job_positions
     id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     "position" character varying(50) NOT NULL,
     PRIMARY KEY (id),
-	UNIQUE("position")
+    UNIQUE("position")
 );
 
 CREATE TABLE public.staff_users
@@ -71,7 +71,7 @@ CREATE TABLE public.users
     email character varying(50) NOT NULL,
     password character varying(32) NOT NULL,
     PRIMARY KEY (id),
-	UNIQUE(email)
+    UNIQUE(email)
 );
 
 CREATE TABLE public.verify_code
@@ -82,7 +82,7 @@ CREATE TABLE public.verify_code
     created_date date NOT NULL,
     confirmed_date date,
     PRIMARY KEY (id),
-	UNIQUE(verify_code)
+    UNIQUE(verify_code)
 );
 
 ALTER TABLE public.candidate_users
