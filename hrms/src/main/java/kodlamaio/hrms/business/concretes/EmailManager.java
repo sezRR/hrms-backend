@@ -10,6 +10,6 @@ import org.springframework.stereotype.Component;
 public class EmailManager implements EmailService {
     @Override
     public Result sendEmail(User user) {
-        return new SuccessResult("Email was sent successfully to: " + user.getEmail());
+        return new SuccessResult("Email has been sent successfully to: " + user.getEmail());
     }
 }
