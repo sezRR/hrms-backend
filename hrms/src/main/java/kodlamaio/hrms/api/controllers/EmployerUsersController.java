@@ -23,11 +23,6 @@ public class EmployerUsersController {
         return this.employerUserService.getAll();
     }
 
-    @PostMapping("/findbyemailis")
-    public DataResult<List<EmployerUser>> findByEmailIs(@RequestBody String email){
-        return this.employerUserService.findByEmailIs(email.toLowerCase().trim());
-    }
-
     @PostMapping("/add")
     public Result add(@RequestBody EmployerUser employerUser){
         return this.employerUserService.add(employerUser);

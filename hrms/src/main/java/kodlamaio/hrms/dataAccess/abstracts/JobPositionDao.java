@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface JobPositionDao extends JpaRepository<JobPosition, Integer> {
-    List<JobPosition> findByPositionIs(String position);
+    List<JobPosition> findByPosition(String position);
 }

@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface EmployerUserService {
     DataResult<List<EmployerUser>> getAll();
-    DataResult<List<EmployerUser>> findByEmailIs(String email);
 
     Result add(EmployerUser employerUser);
 }

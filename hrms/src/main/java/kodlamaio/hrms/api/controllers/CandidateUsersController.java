@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Locale;
 
 @RestController
 @RequestMapping("/api/candidateusers")
@@ -24,16 +23,6 @@ public class CandidateUsersController {
     @GetMapping("/getall")
     public DataResult<List<CandidateUser>> getAll(){
         return this.candidateUserService.getAll();
-    }
-
-    @PostMapping("/findbyemailis")
-    public DataResult<List<CandidateUser>> findByEmailIs(@RequestBody String email){
-        return this.candidateUserService.findByEmailIs(email.toLowerCase().trim());
-    }
-
-    @PostMapping("/findbyidentitynumberis")
-    public DataResult<List<CandidateUser>> findByIdentityNumberIs(@RequestBody String identityNumber){
-        return this.candidateUserService.findByIdentityNumberIs(identityNumber.trim());
     }
 
     @PostMapping("/add")
