@@ -32,7 +32,7 @@ public class EmployerUserValidator extends UserValidator implements EmployerUser
         String email = employerUser.getEmail();
         String webAddress = employerUser.getWebAddress();
 
-        String domain = webAddress.split("www")[1];
+        String domain = webAddress.split("www.")[1];
 
         if (domain.equals(email.split("@")[1])){
             return new SuccessResult();

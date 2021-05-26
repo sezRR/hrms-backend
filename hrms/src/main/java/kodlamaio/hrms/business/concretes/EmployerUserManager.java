@@ -42,6 +42,7 @@ public class EmployerUserManager extends UserManager<EmployerUser> implements Em
 
         results.add(BusinessEngine.run(super.existsByEmail(employerUser.getEmail())));
         results.add(BusinessEngine.run(this.employerUserValidatorService.employerUserCheckFields(employerUser)));
+        results.add(BusinessEngine.run(this.employerUserValidatorService.isEmailDomainCheck(employerUser)));
 
         Result result = UserCheckHelper.checkLogicResults(results);
 
