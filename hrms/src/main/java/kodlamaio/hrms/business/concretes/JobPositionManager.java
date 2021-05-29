@@ -2,6 +2,7 @@ package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
 
+import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.results.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,21 +23,21 @@ public class JobPositionManager implements JobPositionService {
 
 	@Override
 	public DataResult<List<JobPosition>> getAll() {
-		return new SuccessDataResult<>(this.jobPositionDao.findAll());
+		return new SuccessDataResult<>(this.jobPositionDao.findAll(), Messages.jobPositionsListed);
 	}
 
 	@Override
 	public DataResult<List<JobPosition>> findByPositionIs(String position) {
-		return new SuccessDataResult<>(this.jobPositionDao.findByPosition(position));
+		return new SuccessDataResult<>(this.jobPositionDao.findByPosition(position), Messages.jobPositionListedByPositionName);
 	}
 
 	@Override
 	public Result add(JobPosition jobPosition) {
 		if (this.findByPositionIs(jobPosition.getPosition()).getData().size() != 0){
-			return new ErrorResult("This job position already exists");
+			return new ErrorResult(Messages.jobPositionAlreadyExists);
 		}
 
 		this.jobPositionDao.save(jobPosition);
-		return new SuccessResult("Process succeeded");
+		return new SuccessResult(Messages.addJobPosition);
 	}
 }

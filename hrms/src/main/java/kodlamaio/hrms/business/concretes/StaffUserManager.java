@@ -2,6 +2,7 @@ package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.abstracts.StaffUserService;
 import kodlamaio.hrms.business.concretes.checkHelper.StaffUserCheckHelper;
+import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.dataAccess.abstracts.StaffUserDao;
@@ -24,11 +25,11 @@ public class StaffUserManager implements StaffUserService {
 
     @Override
     public DataResult<List<StaffUser>> getAll() {
-        return new SuccessDataResult<>(this.staffUserDao.findAll());
+        return new SuccessDataResult<>(this.staffUserDao.findAll(), Messages.usersListed);
     }
 
     @Override
     public DataResult<Boolean> confirmEmployer(StaffUser staffUser, EmployerUser confirmedEmployerUser) {
-        return new SuccessDataResult<>(StaffUserCheckHelper.confirmEmployer(confirmedEmployerUser));
+        return new SuccessDataResult<>(StaffUserCheckHelper.confirmEmployer(confirmedEmployerUser), Messages.staffUserConfirmedEmployer);
     }
 }
