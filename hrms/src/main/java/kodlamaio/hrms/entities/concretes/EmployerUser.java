@@ -18,7 +18,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="employer_users")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdverts"})
 public class EmployerUser extends User {
 
     @Column(name = "company_name")
@@ -29,7 +28,4 @@ public class EmployerUser extends User {
 
     @Column(name="phone_number")
     private String phoneNumber;
-
-    @OneToMany(mappedBy = "employer")
-    private List<JobAdvert> jobAdverts;
 }

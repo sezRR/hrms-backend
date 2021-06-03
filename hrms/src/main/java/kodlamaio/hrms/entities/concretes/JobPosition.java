@@ -14,7 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name="job_positions")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdverts"})
 public class JobPosition {
 	
 	@Id
@@ -24,7 +23,4 @@ public class JobPosition {
 	
 	@Column(name="position")
 	private String position;
-
-	@OneToMany(mappedBy = "position")
-	private List<JobAdvert> jobAdverts;
 }
