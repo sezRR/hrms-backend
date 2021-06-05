@@ -2,6 +2,7 @@ package kodlamaio.hrms.core.adapters.cloudinary;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import kodlamaio.hrms.config.CloudinaryUserConfig;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,8 @@ public class CloudinaryManager implements CloudinaryService {
     private final Cloudinary cloudinary;
 
     @Autowired
-    public CloudinaryManager() {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(CloudinaryUserConfig.class);
-        this.cloudinary = (Cloudinary) context.getBean("getCloudinaryUser");
+    public CloudinaryManager(Cloudinary cloudinary) {
+        this.cloudinary = cloudinary;
     }
 
     @Override

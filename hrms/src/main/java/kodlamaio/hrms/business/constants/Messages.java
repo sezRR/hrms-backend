@@ -19,7 +19,8 @@ public class Messages {
     public static String jobAdvertsListed = "Job adverts has been listed successfully.";
     public static String jobAdvertsListedByActivationStatus = "Job adverts has been listed successfully by activation status.";
     public static String jobAdvertsListedByActivationStatusAndByEmployerId = "Job adverts has been listed successfully by activation status and employer id.";
-    public static String updateJobAdvertActivationStatus = "Job advert activation status has been updated successfully to 'deactivate'.";
+    public static String updateJobAdvertActivationStatusToDeactivate = "Job advert activation status has been updated successfully to 'deactivate'.";
+    public static String updateJobAdvertActivationStatusToActivate = "Job advert activation status has been updated successfully to 'activate'.";
 
     public static String addJobPosition = "Job position added.";
     public static String jobPositionsListed = "Job positions has been listed.";

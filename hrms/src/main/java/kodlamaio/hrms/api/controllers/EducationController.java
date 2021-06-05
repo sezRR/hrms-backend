@@ -6,6 +6,7 @@ import kodlamaio.hrms.business.abstracts.EducationService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Education;
+import kodlamaio.hrms.entities.dtos.EducationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class EducationController {
     }
 
     @PostMapping("/add")
-    public Result add(@Valid @RequestBody Education education){
-        return this.educationService.add(education);
+    public Result add(@Valid @RequestBody EducationDto educationDto){
+        return this.educationService.add(educationDto);
     }
 }

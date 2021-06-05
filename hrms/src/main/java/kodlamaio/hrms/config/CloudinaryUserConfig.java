@@ -1,9 +1,11 @@
-package kodlamaio.hrms.core.adapters.cloudinary;
+package kodlamaio.hrms.config;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class CloudinaryUserConfig {
     @Bean(name = {"getCloudinaryUser", "Cloudinary"})
     public Cloudinary getCloudinaryUser(){

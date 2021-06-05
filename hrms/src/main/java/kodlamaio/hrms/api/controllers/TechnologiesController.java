@@ -6,6 +6,7 @@ import kodlamaio.hrms.business.abstracts.TechnologyService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Technology;
+import kodlamaio.hrms.entities.dtos.TechnologyDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +28,7 @@ public class TechnologiesController {
     }
 
     @PostMapping("/add")
-    public Result add(@Valid @RequestBody Technology technology){
-        return this.technologyService.add(technology);
+    public Result add(@Valid @RequestBody TechnologyDto technologyDto){
+        return this.technologyService.add(technologyDto);
     }
 }

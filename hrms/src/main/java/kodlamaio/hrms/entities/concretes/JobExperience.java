@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
 
 @Data
@@ -31,10 +32,11 @@ public class JobExperience {
     @Column(name = "company_name")
     private String companyName;
 
-    @ManyToOne(targetEntity = JobPosition.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = JobPosition.class)
     @JoinColumn(name = "job_position_id", referencedColumnName = "id")
     private JobPosition jobPosition;
 
+    @PastOrPresent
     @Column(name = "started_date")
     private LocalDate startedDate;
 

@@ -2,12 +2,14 @@ package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.abstracts.JobAdvertService;
 import kodlamaio.hrms.business.constants.Messages;
+import kodlamaio.hrms.core.utilities.converter.DtoConverterService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertDao;
 import kodlamaio.hrms.entities.concretes.JobAdvert;
+import kodlamaio.hrms.entities.dtos.JobAdvertAddDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +19,12 @@ import java.util.List;
 public class JobAdvertManager implements JobAdvertService {
 
     private final JobAdvertDao jobAdvertDao;
+    private final DtoConverterService dtoConverterService;
 
     @Autowired
-    public JobAdvertManager(JobAdvertDao jobAdvertDao) {
+    public JobAdvertManager(JobAdvertDao jobAdvertDao, DtoConverterService dtoConverterService) {
         this.jobAdvertDao = jobAdvertDao;
+        this.dtoConverterService = dtoConverterService;
     }
 
     @Override
@@ -39,11 +43,26 @@ public class JobAdvertManager implements JobAdvertService {
     }
 
     @Override
+    public Result add(JobAdvertAddDto jobAdvertAddDto) {
+        this.jobAdvertDao.save((JobAdvert)this.dtoConverterService.dtoToBaseClassConverter(jobAdvertAddDto, JobAdvert.class));
+        return new SuccessResult("Added");
+    }
+
+    @Override
     public Result closeJobAdvert(int jobAdvertId) {
         JobAdvert tempJobAdvert = this.jobAdvertDao.getOne(jobAdvertId);
         tempJobAdvert.setActive(false);
 
         this.jobAdvertDao.save(tempJobAdvert);
-        return new SuccessResult(Messages.updateJobAdvertActivationStatus);
+        return new SuccessResult(Messages.updateJobAdvertActivationStatusToDeactivate);
+    }
+
+    @Override
+    public Result openJobAdvert(int jobAdvertId) {
+        JobAdvert tempJobAdvert = this.jobAdvertDao.getOne(jobAdvertId);
+        tempJobAdvert.setActive(true);
+
+        this.jobAdvertDao.save(tempJobAdvert);
+        return new SuccessResult(Messages.updateJobAdvertActivationStatusToActivate);
     }
 }
