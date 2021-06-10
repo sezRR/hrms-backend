@@ -27,13 +27,13 @@ public class JobPositionManager implements JobPositionService {
 	}
 
 	@Override
-	public DataResult<List<JobPosition>> findByPositionIs(String position) {
+	public DataResult<List<JobPosition>> getByPosition(String position) {
 		return new SuccessDataResult<>(this.jobPositionDao.findByPosition(position), Messages.jobPositionListedByPositionName);
 	}
 
 	@Override
 	public Result add(JobPosition jobPosition) {
-		if (this.findByPositionIs(jobPosition.getPosition()).getData().size() != 0){
+		if (this.getByPosition(jobPosition.getPosition()).getData().size() != 0){
 			return new ErrorResult(Messages.jobPositionAlreadyExists);
 		}
 
