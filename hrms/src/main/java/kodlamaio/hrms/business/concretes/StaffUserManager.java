@@ -7,6 +7,7 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.dataAccess.abstracts.StaffUserDao;
 import kodlamaio.hrms.entities.concretes.EmployerUser;
+import kodlamaio.hrms.entities.concretes.JobAdvert;
 import kodlamaio.hrms.entities.concretes.StaffUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,5 +32,10 @@ public class StaffUserManager implements StaffUserService {
     @Override
     public DataResult<Boolean> confirmEmployer(StaffUser staffUser, EmployerUser confirmedEmployerUser) {
         return new SuccessDataResult<>(StaffUserCheckHelper.confirmEmployer(confirmedEmployerUser), Messages.staffUserConfirmedEmployer);
+    }
+
+    @Override
+    public DataResult<Boolean> confirmJobAdvert(StaffUser staffUser, JobAdvert jobAdvert) {
+        return new SuccessDataResult<>(StaffUserCheckHelper.confirmJobAdvert(jobAdvert));
     }
 }
