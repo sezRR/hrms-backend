@@ -37,6 +37,11 @@ public class JobAdvertsController {
         return this.jobAdvertService.getByActiveIsAndEmployer_Id(employerId);
     }
 
+    @GetMapping("/getbyactiveforprominent")
+    public DataResult<List<JobAdvert>> getByActiveForProminent(@Valid @RequestParam int numberOfProminent){
+        return this.jobAdvertService.getByActiveForProminent(numberOfProminent);
+    }
+
     @PostMapping("/add")
     public Result add(@Valid @RequestBody JobAdvertAddDto jobAdvertAddDto){
         return this.jobAdvertService.add(jobAdvertAddDto);

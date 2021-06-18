@@ -13,7 +13,9 @@ import kodlamaio.hrms.entities.dtos.JobAdvertAddDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class JobAdvertManager implements JobAdvertService {
@@ -40,6 +42,28 @@ public class JobAdvertManager implements JobAdvertService {
     @Override
     public DataResult<List<JobAdvert>> getByActiveIsAndEmployer_Id(int employerId) {
         return new SuccessDataResult<>(this.jobAdvertDao.getByActiveIsAndEmployer_Id(employerId), Messages.jobAdvertsListedByActivationStatusAndByEmployerId);
+    }
+
+    @Override
+    public DataResult<List<JobAdvert>> getByActiveForProminent(int numberOfProminent) {
+        Random random = new Random();
+
+        List<JobAdvert> activeJobAdverts = this.jobAdvertDao.getByActiveIs();
+        List<JobAdvert> prominentJobAdverts = new ArrayList<>();
+
+        for (int i = 0; i < numberOfProminent; i++){
+
+            if (i > activeJobAdverts.size() + 1){
+                return new SuccessDataResult<>(prominentJobAdverts);
+            }
+
+            int randomIndex = random.nextInt(activeJobAdverts.size());
+
+            prominentJobAdverts.add(activeJobAdverts.get(randomIndex));
+            activeJobAdverts.remove(randomIndex);
+        }
+
+        return new SuccessDataResult<>(prominentJobAdverts);
     }
 
     @Override
