@@ -11,6 +11,7 @@ import kodlamaio.hrms.dataAccess.abstracts.JobAdvertDao;
 import kodlamaio.hrms.entities.concretes.JobAdvert;
 import kodlamaio.hrms.entities.dtos.JobAdvertAddDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class JobAdvertManager implements JobAdvertService {
     }
 
     @Override
+    @Cacheable(value = "prominentJobAdvertsCache")
     public DataResult<List<JobAdvert>> getByActiveForProminent(int numberOfProminent) {
         Random random = new Random();
 
@@ -62,7 +64,6 @@ public class JobAdvertManager implements JobAdvertService {
             prominentJobAdverts.add(activeJobAdverts.get(randomIndex));
             activeJobAdverts.remove(randomIndex);
         }
-
         return new SuccessDataResult<>(prominentJobAdverts);
     }
 

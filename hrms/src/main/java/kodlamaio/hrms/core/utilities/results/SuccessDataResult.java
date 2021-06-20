@@ -1,6 +1,9 @@
 package kodlamaio.hrms.core.utilities.results;
 
-public class SuccessDataResult<T> extends DataResult<T> {
+import java.io.Serializable;
+
+public class SuccessDataResult<T> extends DataResult<T> implements Serializable {
+
     public SuccessDataResult(T data, String message){
         super(data, true, message);
     }

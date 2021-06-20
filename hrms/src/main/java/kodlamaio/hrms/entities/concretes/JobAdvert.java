@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Data
@@ -14,7 +15,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "job_adverts")
-public class JobAdvert {
+public class JobAdvert implements Serializable {
+
+    private static final long serialVersionUID = 1603714798906422731L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,8 @@
 package kodlamaio.hrms.core.utilities.results;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class Result {
 
     private boolean success;

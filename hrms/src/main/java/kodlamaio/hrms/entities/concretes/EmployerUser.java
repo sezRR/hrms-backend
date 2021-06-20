@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="employer_users")
-public class EmployerUser extends User {
+public class EmployerUser extends User implements Serializable {
 
     @Column(name = "company_name")
     private String companyName;
