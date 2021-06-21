@@ -13,7 +13,7 @@ public interface JobAdvertService {
     DataResult<List<JobAdvert>> getByActiveIsAndEmployer_Id(int employerId);
     DataResult<List<JobAdvert>> getByActiveForProminent(int numberOfProminent);
 
-    Result add(JobAdvertAddDto jobAdvertAddDto);
+    DataResult<JobAdvert> add(JobAdvertAddDto jobAdvertAddDto);
 
     Result closeJobAdvert(int jobAdvertId);
     Result openJobAdvert(int jobAdvertId);

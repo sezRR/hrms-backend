@@ -1,4 +1,4 @@
-package kodlamaio.hrms.core.adapters;
+package kodlamaio.hrms.core.adapters.mernis;
 
 import java.time.LocalDate;
 import kodlamaio.hrms.MernisService.BCFKPSPublicSoap;

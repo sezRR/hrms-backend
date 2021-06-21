@@ -5,7 +5,7 @@ import kodlamaio.hrms.business.abstracts.EmailService;
 import kodlamaio.hrms.business.concretes.checkHelper.UserCheckHelper;
 import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.business.validationRules.CandidateUserValidatorService;
-import kodlamaio.hrms.core.adapters.UserCheckService;
+import kodlamaio.hrms.core.adapters.mernis.UserCheckService;
 import kodlamaio.hrms.core.utilities.business.BusinessEngine;
 import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateUserDao;

@@ -33,7 +33,7 @@ public class JobAdvertsController {
     }
 
     @GetMapping("/getbyactiveisandemployerid")
-    public DataResult<List<JobAdvert>> getByActiveIsAndEmployerId(@RequestParam int employerId){
+    public DataResult<List<JobAdvert>> getByActiveIsAndEmployerId(@Valid @RequestParam int employerId){
         return this.jobAdvertService.getByActiveIsAndEmployer_Id(employerId);
     }
 
@@ -43,7 +43,7 @@ public class JobAdvertsController {
     }
 
     @PostMapping("/add")
-    public Result add(@Valid @RequestBody JobAdvertAddDto jobAdvertAddDto){
+    public DataResult<JobAdvert> add(@Valid @RequestBody JobAdvertAddDto jobAdvertAddDto){
         return this.jobAdvertService.add(jobAdvertAddDto);
     }
 

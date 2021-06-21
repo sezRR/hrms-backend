@@ -1,6 +1,7 @@
 package kodlamaio.hrms.business.abstracts;
 
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.EmployerUser;
 import kodlamaio.hrms.entities.concretes.JobAdvert;
 import kodlamaio.hrms.entities.concretes.StaffUser;
@@ -12,4 +13,6 @@ public interface StaffUserService {
 
     DataResult<Boolean> confirmEmployer(StaffUser staffUser, EmployerUser confirmedEmployerUser);
     DataResult<Boolean> confirmJobAdvert(StaffUser staffUser, JobAdvert jobAdvert);
+
+    Result add(StaffUser staffUser);
 }

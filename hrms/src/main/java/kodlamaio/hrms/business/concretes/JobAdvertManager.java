@@ -68,9 +68,9 @@ public class JobAdvertManager implements JobAdvertService {
     }
 
     @Override
-    public Result add(JobAdvertAddDto jobAdvertAddDto) {
-        this.jobAdvertDao.save((JobAdvert)this.dtoConverterService.dtoToBaseClassConverter(jobAdvertAddDto, JobAdvert.class));
-        return new SuccessResult("Added");
+    public DataResult<JobAdvert> add(JobAdvertAddDto jobAdvertAddDto) {
+        var addedJobAdvert = this.jobAdvertDao.save((JobAdvert)this.dtoConverterService.dtoToBaseClassConverter(jobAdvertAddDto, JobAdvert.class));
+        return new SuccessDataResult<>(addedJobAdvert, "Added");
     }
 
     @Override
