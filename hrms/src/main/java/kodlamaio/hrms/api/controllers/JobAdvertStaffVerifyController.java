@@ -36,7 +36,7 @@ public class JobAdvertStaffVerifyController {
     }
 
     @PutMapping("/confirmjobadvert")
-    Result confirmJobAdvert(int jobAdvertStaffVerifyId, int jobAdvertId, int staffUserId){
+    Result confirmJobAdvert(@Valid int jobAdvertStaffVerifyId, @Valid int jobAdvertId, @Valid int staffUserId){
         return this.jobAdvertStaffVerifyService.confirmJobAdvert(jobAdvertStaffVerifyId, jobAdvertId, staffUserId);
     }
 
