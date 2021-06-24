@@ -8,7 +8,8 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobExperienceDao;
 import kodlamaio.hrms.entities.concretes.JobExperience;
-import kodlamaio.hrms.entities.dtos.JobExperienceDto;
+import kodlamaio.hrms.entities.dtos.JobExperienceAddDto;
+import kodlamaio.hrms.entities.dtos.JobExperienceUpdateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +32,24 @@ public class JobExperienceManager implements JobExperienceService {
     }
 
     @Override
-    public Result add(JobExperienceDto jobExperienceDto) {
-        this.jobExperienceDao.save((JobExperience)this.dtoConverterService.dtoToBaseClassConverter(jobExperienceDto, JobExperience.class));
+    public Result add(JobExperienceAddDto jobExperienceAddDto) {
+        this.jobExperienceDao.save((JobExperience)this.dtoConverterService.dtoToBaseClassConverter(jobExperienceAddDto, JobExperience.class));
         return new SuccessResult("Added");
+    }
+
+    @Override
+    public Result update(JobExperienceUpdateDto jobExperienceUpdateDto) {
+        JobExperience tempJobExperience = this.jobExperienceDao.getOne(jobExperienceUpdateDto.getId());
+
+        JobExperienceAddDto jobExperienceAddDto = (JobExperienceAddDto) this.dtoConverterService.dtoToBaseClassConverter(tempJobExperience, JobExperienceAddDto.class);
+        jobExperienceAddDto.setCompanyName(jobExperienceUpdateDto.getCompanyName());
+        jobExperienceAddDto.setJobPositionId(jobExperienceUpdateDto.getJobPositionId());
+        jobExperienceAddDto.setStartedDate(jobExperienceUpdateDto.getStartedDate());
+        jobExperienceAddDto.setEndedDate(jobExperienceUpdateDto.getEndedDate());
+
+        JobExperience updatedJobExperience = (JobExperience) this.dtoConverterService.dtoToBaseClassConverter(jobExperienceAddDto, JobExperience.class);
+        this.jobExperienceDao.save(updatedJobExperience);
+
+        return new SuccessResult("Updated");
     }
 }

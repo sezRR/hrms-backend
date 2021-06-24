@@ -7,11 +7,15 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.EducationDao;
+import kodlamaio.hrms.dataAccess.abstracts.ResumeDao;
 import kodlamaio.hrms.entities.concretes.Education;
-import kodlamaio.hrms.entities.dtos.EducationDto;
+import kodlamaio.hrms.entities.concretes.Resume;
+import kodlamaio.hrms.entities.dtos.EducationAddDto;
+import kodlamaio.hrms.entities.dtos.EducationUpdateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -31,8 +35,25 @@ public class EducationManager implements EducationService {
     }
 
     @Override
-    public Result add(EducationDto educationDto) {
-        this.educationDao.save((Education)this.dtoConverterService.dtoToBaseClassConverter(educationDto, Education.class));
+    public Result add(EducationAddDto educationAddDto) {
+        this.educationDao.save((Education)this.dtoConverterService.dtoToBaseClassConverter(educationAddDto, Education.class));
         return new SuccessResult("Added");
+    }
+
+    @Override
+    public Result update(EducationUpdateDto educationUpdateDto) {
+        Education tempEducation = this.educationDao.getOne(educationUpdateDto.getId());
+
+        EducationAddDto educationAddDto = (EducationAddDto) this.dtoConverterService.dtoToBaseClassConverter(tempEducation, EducationAddDto.class);
+        educationAddDto.setSchoolName(educationUpdateDto.getSchoolName());
+        educationAddDto.setSchoolDepartment(educationUpdateDto.getSchoolDepartment());
+        educationAddDto.setGraduateId(educationUpdateDto.getGraduateId());
+        educationAddDto.setStartedDate(educationUpdateDto.getStartedDate());
+        educationAddDto.setEndedDate(educationUpdateDto.getEndedDate());
+
+        Education updatedEducation = (Education) this.dtoConverterService.dtoToBaseClassConverter(educationAddDto, Education.class);
+        this.educationDao.save(updatedEducation);
+
+        return new SuccessResult("Updated");
     }
 }

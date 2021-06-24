@@ -10,14 +10,14 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResumeAddDto {
+public class EducationAddDto {
     @JsonIgnore
     private int id;
-    private int candidateId;
-    private String githubLink;
-    private String linkedinLink;
-    private String photo;
-    private String description;
+    private int resumeId;
+    private String schoolName;
+    private int graduateId;
+    private String schoolDepartment;
+    private LocalDate startedDate;
+    private LocalDate endedDate;
     private LocalDate createdDate;
-    private LocalDate updatedDate;
 }

@@ -5,19 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResumeAddDto {
+public class LanguageAddDto {
     @JsonIgnore
     private int id;
-    private int candidateId;
-    private String githubLink;
-    private String linkedinLink;
-    private String photo;
-    private String description;
+    private int resumeId;
+    private String language;
+    private char langLevel;
     private LocalDate createdDate;
-    private LocalDate updatedDate;
 }

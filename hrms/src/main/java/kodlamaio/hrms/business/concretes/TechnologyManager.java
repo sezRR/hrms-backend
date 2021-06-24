@@ -8,7 +8,8 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.TechnologyDao;
 import kodlamaio.hrms.entities.concretes.Technology;
-import kodlamaio.hrms.entities.dtos.TechnologyDto;
+import kodlamaio.hrms.entities.dtos.TechnologyAddDto;
+import kodlamaio.hrms.entities.dtos.TechnologyUpdateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +33,19 @@ public class TechnologyManager implements TechnologyService {
     }
 
     @Override
-    public Result add(TechnologyDto technologyDto) {
-        this.technologyDao.save((Technology)this.dtoConverterService.dtoToBaseClassConverter(technologyDto, Technology.class));
+    public Result add(TechnologyAddDto technologyAddDto) {
+        this.technologyDao.save((Technology)this.dtoConverterService.dtoToBaseClassConverter(technologyAddDto, Technology.class));
         return new SuccessResult("Added");
+    }
+
+    @Override
+    public Result update(TechnologyUpdateDto technologyUpdateDto) {
+        Technology tempTechnology = this.technologyDao.getOne(technologyUpdateDto.getId());
+
+        tempTechnology.setDescription(technologyUpdateDto.getDescription());
+
+        this.technologyDao.save(tempTechnology);
+
+        return new SuccessResult("Updated");
     }
 }
