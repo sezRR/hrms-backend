@@ -27,6 +27,11 @@ public class JobAdvertsController {
         return this.jobAdvertService.getAll();
     }
 
+    @GetMapping("/getbyactiveiswithpagination")
+    public DataResult<List<JobAdvert>> getByActiveIsWithPagination(@Valid @RequestParam(required = false, defaultValue = "1") int pageNo, @Valid @RequestParam(required = false, defaultValue = "10") int pageSize){
+        return this.jobAdvertService.getByActiveIsWithPagination(pageNo, pageSize);
+    }
+
     @GetMapping("/getbyactiveis")
     public DataResult<List<JobAdvert>> getByActiveIs(){
         return this.jobAdvertService.getByActiveIs();

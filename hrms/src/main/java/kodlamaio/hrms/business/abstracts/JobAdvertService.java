@@ -10,6 +10,7 @@ import java.util.List;
 public interface JobAdvertService {
     DataResult<List<JobAdvert>> getAll();
     DataResult<List<JobAdvert>> getByActiveIs();
+    DataResult<List<JobAdvert>> getByActiveIsWithPagination(int pageNo, int pageSize);
     DataResult<List<JobAdvert>> getByActiveIsAndEmployer_Id(int employerId);
     DataResult<List<JobAdvert>> getByActiveForProminent(int numberOfProminent);
 

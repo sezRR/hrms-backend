@@ -30,4 +30,9 @@ public class StaffUsersController {
     public Result add(@Valid @RequestBody StaffUser staffUser){
         return this.staffUserService.add(staffUser);
     }
+
+    @PutMapping("/update")
+    public Result update(@Valid @RequestBody StaffUser staffUser){
+        return this.staffUserService.update(staffUser);
+    }
 }

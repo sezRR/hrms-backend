@@ -12,6 +12,8 @@ import kodlamaio.hrms.entities.concretes.JobAdvert;
 import kodlamaio.hrms.entities.dtos.JobAdvertAddDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -33,6 +35,13 @@ public class JobAdvertManager implements JobAdvertService {
     @Override
     public DataResult<List<JobAdvert>> getAll() {
         return new SuccessDataResult<>(this.jobAdvertDao.findAll(), Messages.jobAdvertsListed);
+    }
+
+    @Override
+    public DataResult<List<JobAdvert>> getByActiveIsWithPagination(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+
+        return new SuccessDataResult<>(this.jobAdvertDao.getByActiveIs(pageable).getContent());
     }
 
     @Override

@@ -46,4 +46,18 @@ public class StaffUserManager implements StaffUserService {
         this.staffUserDao.save(staffUser);
         return new SuccessResult("Added");
     }
+
+    @Override
+    public Result update(StaffUser staffUser) {
+        StaffUser tempStaffUser = this.staffUserDao.getOne(staffUser.getId());
+
+        tempStaffUser.setFirstName(staffUser.getFirstName());
+        tempStaffUser.setLastName(staffUser.getLastName());
+        tempStaffUser.setEmail(staffUser.getEmail());
+        tempStaffUser.setPassword(staffUser.getPassword());
+
+        this.staffUserDao.save(tempStaffUser);
+
+        return new SuccessResult("Updated");
+    }
 }

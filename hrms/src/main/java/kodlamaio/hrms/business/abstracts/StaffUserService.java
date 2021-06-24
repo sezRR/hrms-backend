@@ -15,4 +15,5 @@ public interface StaffUserService {
     DataResult<Boolean> confirmJobAdvert(StaffUser staffUser, JobAdvert jobAdvert);
 
     Result add(StaffUser staffUser);
+    Result update(StaffUser staffUser);
 }
