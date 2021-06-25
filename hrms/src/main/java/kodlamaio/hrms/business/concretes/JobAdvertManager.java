@@ -45,6 +45,20 @@ public class JobAdvertManager implements JobAdvertService {
     }
 
     @Override
+    public DataResult<List<JobAdvert>> getByActiveIsWithCityFiltering(int pageNo, int pageSize, int... cityIds) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+
+        return new SuccessDataResult<>(this.jobAdvertDao.getByActiveIsWithCityFiltering(pageable, cityIds).getContent());
+    }
+
+    @Override
+    public DataResult<List<JobAdvert>> getByActiveIsAndWorkingTimeFiltering(int pageNo, int pageSize, int... workingTimes) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+
+        return new SuccessDataResult<>(this.jobAdvertDao.getByActiveIsAndWorkingTimeFiltering(pageable, workingTimes).getContent());
+    }
+
+    @Override
     public DataResult<List<JobAdvert>> getByActiveIs() {
         return new SuccessDataResult<>(this.jobAdvertDao.getByActiveIs(), Messages.jobAdvertsListedByActivationStatus);
     }

@@ -32,6 +32,16 @@ public class JobAdvertsController {
         return this.jobAdvertService.getByActiveIsWithPagination(pageNo, pageSize);
     }
 
+    @GetMapping("/getbyactiveiswithcityfiltering")
+    public DataResult<List<JobAdvert>> getByActiveIsWithCityFiltering(@Valid @RequestParam int pageNo, @Valid @RequestParam int pageSize, @Valid @RequestParam int ...cityIds){
+        return this.jobAdvertService.getByActiveIsWithCityFiltering(pageNo, pageSize, cityIds);
+    }
+
+    @GetMapping("/getbyactiveisandworkingtime")
+    public DataResult<List<JobAdvert>> getByActiveIsAndWorkingTimeFiltering(@Valid @RequestParam int pageNo, @Valid @RequestParam int pageSize, @Valid @RequestParam int ...workingTimes){
+        return this.jobAdvertService.getByActiveIsAndWorkingTimeFiltering(pageNo, pageSize, workingTimes);
+    }
+
     @GetMapping("/getbyactiveis")
     public DataResult<List<JobAdvert>> getByActiveIs(){
         return this.jobAdvertService.getByActiveIs();

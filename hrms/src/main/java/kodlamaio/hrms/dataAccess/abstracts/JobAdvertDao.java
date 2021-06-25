@@ -17,6 +17,12 @@ public interface JobAdvertDao extends JpaRepository<JobAdvert, Integer> {
     @Query(value = "FROM JobAdvert jobAdvert where jobAdvert.isActive = true ORDER BY jobAdvert.id")
     Page<JobAdvert> getByActiveIs(Pageable pageable);
 
+    @Query(value = "FROM JobAdvert jobAdvert where jobAdvert.isActive = true and jobAdvert.city.id in :cityIds ORDER BY jobAdvert.id")
+    Page<JobAdvert> getByActiveIsWithCityFiltering(Pageable pageable, int ...cityIds);
+
+    @Query(value = "FROM JobAdvert jobAdvert where jobAdvert.isActive = true and jobAdvert.workingTime.id in :workingTimes ORDER BY jobAdvert.id")
+    Page<JobAdvert> getByActiveIsAndWorkingTimeFiltering(Pageable pageable, int ...workingTimes);
+
     @Query("FROM JobAdvert where isActive = true and employer.id=:employerId")
     List<JobAdvert> getByActiveIsAndEmployer_Id(int employerId);
 }
