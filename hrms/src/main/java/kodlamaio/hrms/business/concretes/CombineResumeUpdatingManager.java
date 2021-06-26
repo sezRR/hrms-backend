@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ResumeUpdatingManager implements ResumeUpdatingService {
+public class CombineResumeUpdatingManager implements CombineResumeUpdatingService {
 
     private final ResumeService resumeService;
     private final EducationService educationService;
@@ -17,7 +17,7 @@ public class ResumeUpdatingManager implements ResumeUpdatingService {
     private final TechnologyService technologyService;
 
     @Autowired
-    public ResumeUpdatingManager(ResumeService resumeService, EducationService educationService, JobExperienceService jobExperienceService, LanguageService languageService, TechnologyService technologyService) {
+    public CombineResumeUpdatingManager(ResumeService resumeService, EducationService educationService, JobExperienceService jobExperienceService, LanguageService languageService, TechnologyService technologyService) {
         this.resumeService = resumeService;
         this.educationService = educationService;
         this.jobExperienceService = jobExperienceService;

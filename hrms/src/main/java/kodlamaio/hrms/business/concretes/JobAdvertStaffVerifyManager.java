@@ -11,7 +11,6 @@ import kodlamaio.hrms.dataAccess.abstracts.JobAdvertStaffVerifyDao;
 import kodlamaio.hrms.dataAccess.abstracts.StaffUserDao;
 import kodlamaio.hrms.entities.concretes.JobAdvert;
 import kodlamaio.hrms.entities.concretes.JobAdvertStaffVerify;
-import kodlamaio.hrms.entities.concretes.StaffUser;
 import kodlamaio.hrms.entities.dtos.JobAdvertStaffVerifyAddDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

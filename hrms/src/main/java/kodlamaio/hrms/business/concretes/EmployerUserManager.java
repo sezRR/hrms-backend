@@ -53,4 +53,20 @@ public class EmployerUserManager extends UserManager<EmployerUser> implements Em
         this.employerUserDao.save(employerUser);
         return new SuccessResult(this.emailService.sendEmail(employerUser).getMessage());
     }
+
+    @Override
+    public Result update(EmployerUser employerUser) {
+
+        EmployerUser tempEmployerUser = this.employerUserDao.getOne(employerUser.getId());
+
+        tempEmployerUser.setEmail(employerUser.getEmail());
+        tempEmployerUser.setCompanyName(employerUser.getCompanyName());
+        tempEmployerUser.setWebAddress(employerUser.getWebAddress());
+        tempEmployerUser.setPhoneNumber(employerUser.getPhoneNumber());
+        tempEmployerUser.setPassword(employerUser.getPassword());
+
+        this.employerUserDao.save(tempEmployerUser);
+
+        return new SuccessResult("Updated");
+    }
 }

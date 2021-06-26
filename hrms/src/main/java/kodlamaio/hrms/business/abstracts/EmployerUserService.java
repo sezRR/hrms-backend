@@ -10,4 +10,5 @@ public interface EmployerUserService {
     DataResult<List<EmployerUser>> getAll();
 
     Result add(EmployerUser employerUser);
+    Result update(EmployerUser employerUser);
 }
