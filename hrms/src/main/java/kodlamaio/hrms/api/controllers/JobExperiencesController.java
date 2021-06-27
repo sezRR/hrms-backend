@@ -15,6 +15,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/jobexperiences")
+@CrossOrigin
 public class JobExperiencesController {
     private final JobExperienceService jobExperienceService;
 

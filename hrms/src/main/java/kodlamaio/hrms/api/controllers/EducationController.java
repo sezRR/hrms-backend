@@ -15,6 +15,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/education")
+@CrossOrigin
 public class EducationController {
     private final EducationService educationService;
 

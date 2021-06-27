@@ -4,15 +4,13 @@ import kodlamaio.hrms.business.abstracts.CombineResumeUpdatingService;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.dtos.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/resumesupdating")
+@CrossOrigin
 public class CombineResumesUpdatingController {
 
     private final CombineResumeUpdatingService combineResumeUpdatingService;

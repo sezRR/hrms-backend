@@ -13,6 +13,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/graduates")
+@CrossOrigin
 public class GraduateController {
 
     private final GraduateService graduateService;

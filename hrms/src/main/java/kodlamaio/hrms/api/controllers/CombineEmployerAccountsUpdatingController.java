@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/employeraccountsupdating")
+@CrossOrigin
 public class CombineEmployerAccountsUpdatingController {
     private final CombineEmployerAccountUpdatingService combineEmployerAccountUpdatingService;
 

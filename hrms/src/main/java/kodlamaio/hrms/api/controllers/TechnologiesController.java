@@ -15,6 +15,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/technologies")
+@CrossOrigin
 public class TechnologiesController {
     private final TechnologyService technologyService;
 

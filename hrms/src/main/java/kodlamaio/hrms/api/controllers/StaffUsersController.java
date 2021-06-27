@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/staffusers")
+@CrossOrigin
 public class StaffUsersController {
 
     private final StaffUserService staffUserService;

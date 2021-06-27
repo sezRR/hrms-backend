@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/employerstaffverifyaccountupdatescontroller")
+@CrossOrigin
 public class EmployerStaffVerifyAccountUpdatesController {
     private final EmployerStaffVerifyAccountUpdateService employerStaffVerifyAccountUpdateService;
 

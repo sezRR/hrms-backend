@@ -17,13 +17,13 @@ public class FavoriteJobAdvert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id;
+    private int id;
 
     @ManyToOne(targetEntity = CandidateUser.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "candidate_user_id", referencedColumnName = "id", nullable = false)
     private CandidateUser candidateUser;
 
-    @ManyToOne(targetEntity = JobAdvert.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = JobAdvert.class)
     @JoinColumn(name = "job_advert_id", referencedColumnName = "id", nullable = false)
     private JobAdvert jobAdvert;
 

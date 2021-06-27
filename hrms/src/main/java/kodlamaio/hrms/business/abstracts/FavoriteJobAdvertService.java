@@ -11,5 +11,6 @@ public interface FavoriteJobAdvertService {
     DataResult<List<FavoriteJobAdvert>> getAll();
     DataResult<List<FavoriteJobAdvert>> getAllByCandidateUser(int candidateUserId);
 
-    Result add(FavoriteJobAdvertAddDto favoriteJobAdvertAddDto);
+    DataResult<FavoriteJobAdvert> add(FavoriteJobAdvert favoriteJobAdvert);
+    Result delete(int favoriteJobAdvertId);
 }

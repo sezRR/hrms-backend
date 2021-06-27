@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/favoritejobadvert")
+@CrossOrigin
 public class FavoriteJobAdvertController {
     private final FavoriteJobAdvertService favoriteJobAdvertService;
 
@@ -32,7 +33,12 @@ public class FavoriteJobAdvertController {
     }
 
     @PostMapping("/add")
-    public Result add(@Valid @RequestBody FavoriteJobAdvertAddDto favoriteJobAdvertAddDto){
-        return this.favoriteJobAdvertService.add(favoriteJobAdvertAddDto);
+    public DataResult<FavoriteJobAdvert> add(@Valid @RequestBody FavoriteJobAdvert favoriteJobAdvert){
+        return this.favoriteJobAdvertService.add(favoriteJobAdvert);
+    }
+
+    @DeleteMapping("/delete/{favoriteJobAdvertId}")
+    public Result delete(@Valid @PathVariable int favoriteJobAdvertId){
+        return this.favoriteJobAdvertService.delete(favoriteJobAdvertId);
     }
 }
