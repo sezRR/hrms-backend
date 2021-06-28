@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StaffUserDao extends JpaRepository<StaffUser, Integer> {
-
+    StaffUser getById(int id);
 }

@@ -27,6 +27,11 @@ public class StaffUsersController {
         return this.staffUserService.getAll();
     }
 
+    @GetMapping("/getbyid")
+    public DataResult<StaffUser> getById(@Valid @RequestParam int id){
+        return this.staffUserService.getById(id);
+    }
+
     @PostMapping("/add")
     public Result add(@Valid @RequestBody StaffUser staffUser){
         return this.staffUserService.add(staffUser);

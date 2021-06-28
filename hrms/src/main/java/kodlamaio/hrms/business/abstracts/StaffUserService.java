@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface StaffUserService {
     DataResult<List<StaffUser>> getAll();
+    DataResult<StaffUser> getById(int id);
 
     DataResult<Boolean> confirmEmployer(StaffUser staffUser, EmployerUser confirmedEmployerUser);
     DataResult<Boolean> confirmJobAdvert(StaffUser staffUser, JobAdvert jobAdvert);

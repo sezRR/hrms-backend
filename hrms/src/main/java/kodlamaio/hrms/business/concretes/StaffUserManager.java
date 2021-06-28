@@ -32,6 +32,11 @@ public class StaffUserManager implements StaffUserService {
     }
 
     @Override
+    public DataResult<StaffUser> getById(int id) {
+        return new SuccessDataResult<>(this.staffUserDao.getById(id));
+    }
+
+    @Override
     public DataResult<Boolean> confirmEmployer(StaffUser staffUser, EmployerUser confirmedEmployerUser) {
         return new SuccessDataResult<>(StaffUserCheckHelper.confirmEmployer(confirmedEmployerUser), Messages.staffUserConfirmedEmployer);
     }
