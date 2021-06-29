@@ -7,28 +7,35 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
+import kodlamaio.hrms.dataAccess.abstracts.CityDao;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertDao;
+import kodlamaio.hrms.dataAccess.abstracts.WorkingTimeDao;
 import kodlamaio.hrms.entities.concretes.JobAdvert;
+import kodlamaio.hrms.entities.customEntity.JobAdvertFilter;
 import kodlamaio.hrms.entities.dtos.JobAdvertAddDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class JobAdvertManager implements JobAdvertService {
 
     private final JobAdvertDao jobAdvertDao;
+    private final CityDao cityDao;
+    private final WorkingTimeDao workingTimeDao;
+
     private final DtoConverterService dtoConverterService;
 
     @Autowired
-    public JobAdvertManager(JobAdvertDao jobAdvertDao, DtoConverterService dtoConverterService) {
+    public JobAdvertManager(JobAdvertDao jobAdvertDao, CityDao cityDao, WorkingTimeDao workingTimeDao, DtoConverterService dtoConverterService) {
         this.jobAdvertDao = jobAdvertDao;
+        this.cityDao = cityDao;
+        this.workingTimeDao = workingTimeDao;
         this.dtoConverterService = dtoConverterService;
     }
 
@@ -38,25 +45,29 @@ public class JobAdvertManager implements JobAdvertService {
     }
 
     @Override
-    public DataResult<List<JobAdvert>> getByActiveIsWithPagination(int pageNo, int pageSize) {
+    public DataResult<List<JobAdvert>> getByActiveIsWithPagination(int pageNo, int pageSize, JobAdvertFilter jobAdvertFilter) {
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+        var filteredData = this.jobAdvertDao.getByActiveIs(pageable, jobAdvertFilter);
 
-        return new SuccessDataResult<>(this.jobAdvertDao.getByActiveIs(pageable).getContent());
+        return new SuccessDataResult<>(filteredData.getContent());
     }
 
-    @Override
-    public DataResult<List<JobAdvert>> getByActiveIsWithCityFiltering(int pageNo, int pageSize, int... cityIds) {
-        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
-
-        return new SuccessDataResult<>(this.jobAdvertDao.getByActiveIsWithCityFiltering(pageable, cityIds).getContent());
-    }
-
-    @Override
-    public DataResult<List<JobAdvert>> getByActiveIsAndWorkingTimeFiltering(int pageNo, int pageSize, int... workingTimes) {
-        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
-
-        return new SuccessDataResult<>(this.jobAdvertDao.getByActiveIsAndWorkingTimeFiltering(pageable, workingTimes).getContent());
-    }
+//    private DataResult<List<JobAdvert>> filterData(List<JobAdvert> list, List<Integer> cities, List<Integer> workingTimes){
+//        List<JobAdvert> tempFilteredList = new ArrayList<>();
+//
+//        list.stream().filter(j ->
+//                Optional.ofNullable(cities).orElse(Collections.emptyList())
+//                        .stream().anyMatch(ci -> ci.equals(j.getCity().getId()))
+//                &&
+//                Optional.ofNullable(workingTimes).orElse(Collections.emptyList())
+//                        .stream().anyMatch(wt -> wt.equals(j.getWorkingTime().getId()))).forEach(tempFilteredList::add);
+//
+//        if (cities != null && workingTimes != null){
+//            return new SuccessDataResult<>(tempFilteredList);
+//        }
+//
+//        return new SuccessDataResult<>(list);
+//    }
 
     @Override
     public DataResult<List<JobAdvert>> getByActiveIs() {

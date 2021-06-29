@@ -4,6 +4,7 @@ import kodlamaio.hrms.business.abstracts.JobAdvertService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvert;
+import kodlamaio.hrms.entities.customEntity.JobAdvertFilter;
 import kodlamaio.hrms.entities.dtos.JobAdvertAddDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,18 +29,8 @@ public class JobAdvertsController {
     }
 
     @GetMapping("/getbyactiveiswithpagination")
-    public DataResult<List<JobAdvert>> getByActiveIsWithPagination(@Valid @RequestParam(required = false, defaultValue = "1") int pageNo, @Valid @RequestParam(required = false, defaultValue = "10") int pageSize){
-        return this.jobAdvertService.getByActiveIsWithPagination(pageNo, pageSize);
-    }
-
-    @GetMapping("/getbyactiveiswithcityfiltering")
-    public DataResult<List<JobAdvert>> getByActiveIsWithCityFiltering(@Valid @RequestParam int pageNo, @Valid @RequestParam int pageSize, @Valid @RequestParam int ...cityIds){
-        return this.jobAdvertService.getByActiveIsWithCityFiltering(pageNo, pageSize, cityIds);
-    }
-
-    @GetMapping("/getbyactiveisandworkingtime")
-    public DataResult<List<JobAdvert>> getByActiveIsAndWorkingTimeFiltering(@Valid @RequestParam int pageNo, @Valid @RequestParam int pageSize, @Valid @RequestParam int ...workingTimes){
-        return this.jobAdvertService.getByActiveIsAndWorkingTimeFiltering(pageNo, pageSize, workingTimes);
+    public DataResult<List<JobAdvert>> getByActiveIsWithPagination(@Valid @RequestParam(required = false, defaultValue = "1") int pageNo, @Valid @RequestParam(required = false, defaultValue = "10") int pageSize, @Valid JobAdvertFilter jobAdvertFilter){
+        return this.jobAdvertService.getByActiveIsWithPagination(pageNo, pageSize, jobAdvertFilter);
     }
 
     @GetMapping("/getbyactiveis")
