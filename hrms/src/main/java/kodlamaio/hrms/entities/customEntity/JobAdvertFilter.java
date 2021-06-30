@@ -12,4 +12,5 @@ import java.util.List;
 public class JobAdvertFilter {
     private List<Integer> cities;
     private List<Integer> workingTimes;
+    private List<Integer> workingPlaces;
 }

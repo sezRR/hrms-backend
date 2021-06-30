@@ -14,7 +14,6 @@ import kodlamaio.hrms.entities.concretes.JobAdvert;
 import kodlamaio.hrms.entities.customEntity.JobAdvertFilter;
 import kodlamaio.hrms.entities.dtos.JobAdvertAddDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.support.PagedListHolder;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -26,16 +25,12 @@ import java.util.*;
 public class JobAdvertManager implements JobAdvertService {
 
     private final JobAdvertDao jobAdvertDao;
-    private final CityDao cityDao;
-    private final WorkingTimeDao workingTimeDao;
 
     private final DtoConverterService dtoConverterService;
 
     @Autowired
-    public JobAdvertManager(JobAdvertDao jobAdvertDao, CityDao cityDao, WorkingTimeDao workingTimeDao, DtoConverterService dtoConverterService) {
+    public JobAdvertManager(JobAdvertDao jobAdvertDao, DtoConverterService dtoConverterService) {
         this.jobAdvertDao = jobAdvertDao;
-        this.cityDao = cityDao;
-        this.workingTimeDao = workingTimeDao;
         this.dtoConverterService = dtoConverterService;
     }
 
@@ -51,23 +46,6 @@ public class JobAdvertManager implements JobAdvertService {
 
         return new SuccessDataResult<>(filteredData.getContent());
     }
-
-//    private DataResult<List<JobAdvert>> filterData(List<JobAdvert> list, List<Integer> cities, List<Integer> workingTimes){
-//        List<JobAdvert> tempFilteredList = new ArrayList<>();
-//
-//        list.stream().filter(j ->
-//                Optional.ofNullable(cities).orElse(Collections.emptyList())
-//                        .stream().anyMatch(ci -> ci.equals(j.getCity().getId()))
-//                &&
-//                Optional.ofNullable(workingTimes).orElse(Collections.emptyList())
-//                        .stream().anyMatch(wt -> wt.equals(j.getWorkingTime().getId()))).forEach(tempFilteredList::add);
-//
-//        if (cities != null && workingTimes != null){
-//            return new SuccessDataResult<>(tempFilteredList);
-//        }
-//
-//        return new SuccessDataResult<>(list);
-//    }
 
     @Override
     public DataResult<List<JobAdvert>> getByActiveIs() {

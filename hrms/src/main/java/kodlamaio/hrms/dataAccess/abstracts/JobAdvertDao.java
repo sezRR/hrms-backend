@@ -16,17 +16,12 @@ public interface JobAdvertDao extends JpaRepository<JobAdvert, Integer> {
     @Query("FROM JobAdvert where isActive = true ORDER BY id")
     List<JobAdvert> getByActiveIs();
 
-    @Query(value = "FROM JobAdvert jobAdvert where jobAdvert.isActive = true ORDER BY jobAdvert.id")
-    Page<JobAdvert> getByActiveIs(Pageable pageable);
-
-    @Query("FROM JobAdvert jobAdvert WHERE ((:#{#jfilter.cities}) IS NULL OR jobAdvert.city.id IN (:#{#jfilter.cities})) and ((:#{#jfilter.workingTimes}) IS NULL OR jobAdvert.workingTime.id IN (:#{#jfilter.workingTimes})) and jobAdvert.isActive = true ORDER BY jobAdvert.id")
+    @Query("FROM JobAdvert jobAdvert WHERE " +
+            "((:#{#jfilter.cities}) IS NULL OR jobAdvert.city.id IN (:#{#jfilter.cities})) and " +
+            "((:#{#jfilter.workingTimes}) IS NULL OR jobAdvert.workingTime.id IN (:#{#jfilter.workingTimes})) and " +
+            "((:#{#jfilter.workingPlaces}) IS NULL OR jobAdvert.workingPlace.id IN (:#{#jfilter.workingPlaces})) and " +
+            "jobAdvert.isActive = true ORDER BY jobAdvert.id")
     Page<JobAdvert> getByActiveIs(Pageable pageable, @Param("jfilter") JobAdvertFilter jobAdvertFilter);
-
-    @Query(value = "FROM JobAdvert jobAdvert where jobAdvert.isActive = true and jobAdvert.city.id in :cityIds ORDER BY jobAdvert.id")
-    Page<JobAdvert> getByActiveIsWithCityFiltering(Pageable pageable, int ...cityIds);
-
-    @Query(value = "FROM JobAdvert jobAdvert where jobAdvert.isActive = true and jobAdvert.workingTime.id in :workingTimes ORDER BY jobAdvert.id")
-    Page<JobAdvert> getByActiveIsAndWorkingTimeFiltering(Pageable pageable, int ...workingTimes);
 
     @Query("FROM JobAdvert where isActive = true and employer.id=:employerId")
     List<JobAdvert> getByActiveIsAndEmployer_Id(int employerId);
