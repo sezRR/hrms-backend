@@ -7,16 +7,13 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
-import kodlamaio.hrms.dataAccess.abstracts.CityDao;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertDao;
-import kodlamaio.hrms.dataAccess.abstracts.WorkingTimeDao;
 import kodlamaio.hrms.entities.concretes.JobAdvert;
 import kodlamaio.hrms.entities.customEntity.JobAdvertFilter;
 import kodlamaio.hrms.entities.dtos.JobAdvertAddDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -40,11 +37,11 @@ public class JobAdvertManager implements JobAdvertService {
     }
 
     @Override
-    public DataResult<List<JobAdvert>> getByActiveIsWithPagination(int pageNo, int pageSize, JobAdvertFilter jobAdvertFilter) {
+    public DataResult<Page<JobAdvert>> getByActiveIsWithPagination(int pageNo, int pageSize, JobAdvertFilter jobAdvertFilter) {
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
         var filteredData = this.jobAdvertDao.getByActiveIs(pageable, jobAdvertFilter);
 
-        return new SuccessDataResult<>(filteredData.getContent());
+        return new SuccessDataResult<>(new PageImpl<>(filteredData.getContent(), pageable, filteredData.getTotalElements()));
     }
 
     @Override

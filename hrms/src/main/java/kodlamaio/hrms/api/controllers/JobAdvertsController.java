@@ -7,6 +7,7 @@ import kodlamaio.hrms.entities.concretes.JobAdvert;
 import kodlamaio.hrms.entities.customEntity.JobAdvertFilter;
 import kodlamaio.hrms.entities.dtos.JobAdvertAddDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -29,7 +30,7 @@ public class JobAdvertsController {
     }
 
     @GetMapping("/getbyactiveiswithpagination")
-    public DataResult<List<JobAdvert>> getByActiveIsWithPagination(@Valid @RequestParam(required = false, defaultValue = "1") int pageNo, @Valid @RequestParam(required = false, defaultValue = "10") int pageSize, @Valid JobAdvertFilter jobAdvertFilter){
+    public DataResult<Page<JobAdvert>> getByActiveIsWithPagination(@Valid @RequestParam(required = false, defaultValue = "1") int pageNo, @Valid @RequestParam(required = false, defaultValue = "10") int pageSize, @Valid JobAdvertFilter jobAdvertFilter){
         return this.jobAdvertService.getByActiveIsWithPagination(pageNo, pageSize, jobAdvertFilter);
     }
 
