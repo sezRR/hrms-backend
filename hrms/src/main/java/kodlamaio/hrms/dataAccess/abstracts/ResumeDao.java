@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ResumeDao extends JpaRepository<Resume, Integer> {
-
+    Resume getByCandidate_Id(int candidateUserId);
 }

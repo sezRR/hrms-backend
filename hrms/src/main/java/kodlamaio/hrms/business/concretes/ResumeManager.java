@@ -35,6 +35,11 @@ public class ResumeManager implements ResumeService{
     }
 
     @Override
+    public DataResult<Resume> getByCandidateId(int candidateId) {
+        return new SuccessDataResult<>(this.resumeDao.getByCandidate_Id(candidateId));
+    }
+
+    @Override
     public Result add(ResumeAddDto resumeAddDto) {
         this.resumeDao.save((Resume)this.dtoConverterService.dtoToBaseClassConverter(resumeAddDto, Resume.class));
         return new SuccessResult("Added");

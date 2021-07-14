@@ -37,6 +37,11 @@ public class EmployerStaffVerifyAccountUpdateManager implements EmployerStaffVer
     }
 
     @Override
+    public DataResult<List<EmployerStaffVerifyAccountUpdate>> getWaitingRequests() {
+        return new SuccessDataResult<>(this.employerStaffVerifyAccountUpdateDao.getByStaffUserIsNull());
+    }
+
+    @Override
     public DataResult<EmployerStaffVerifyAccountUpdate> getById(int employerStaffVerifyAccountUpdateId) {
         return new SuccessDataResult<>(this.employerStaffVerifyAccountUpdateDao.getOne(employerStaffVerifyAccountUpdateId));
     }

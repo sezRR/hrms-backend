@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface EmployerStaffVerifyAccountUpdateService {
     DataResult<List<EmployerStaffVerifyAccountUpdate>> getAll();
+    DataResult<List<EmployerStaffVerifyAccountUpdate>> getWaitingRequests();
     DataResult<EmployerStaffVerifyAccountUpdate> getById(int employerStaffVerifyAccountUpdateId);
 
     Result add(EmployerStaffVerifyAccountUpdateAddDto employerStaffVerifyAccountUpdateAddDto);

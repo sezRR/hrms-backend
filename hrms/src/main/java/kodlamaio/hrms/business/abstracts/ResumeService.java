@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface ResumeService {
     DataResult<List<Resume>> getAll();
+    DataResult<Resume> getByCandidateId(int candidateId);
 
     Result add(ResumeAddDto resumeAddDto);
     Result update(ResumeUpdateDto resumeUpdateDto);

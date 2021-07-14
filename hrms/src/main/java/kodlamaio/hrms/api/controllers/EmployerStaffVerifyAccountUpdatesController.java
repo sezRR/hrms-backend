@@ -27,6 +27,11 @@ public class EmployerStaffVerifyAccountUpdatesController {
         return this.employerStaffVerifyAccountUpdateService.getAll();
     }
 
+    @GetMapping("/getwaitingrequests")
+    public DataResult<List<EmployerStaffVerifyAccountUpdate>> getWaitingRequests(){
+        return this.employerStaffVerifyAccountUpdateService.getWaitingRequests();
+    }
+
     @PostMapping("/add")
     public Result add(@Valid @RequestBody EmployerStaffVerifyAccountUpdateAddDto employerStaffVerifyAccountUpdateAddDto) {
         return this.employerStaffVerifyAccountUpdateService.add(employerStaffVerifyAccountUpdateAddDto);

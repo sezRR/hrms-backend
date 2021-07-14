@@ -31,6 +31,11 @@ public class ResumesController {
         return this.resumeService.getAll();
     }
 
+    @GetMapping("/getbycandidateid")
+    public DataResult<Resume> getByCandidateId(@Valid @RequestParam int candidateUserId){
+        return this.resumeService.getByCandidateId(candidateUserId);
+    }
+
     @PostMapping("/add")
     public Result add(@Valid @RequestBody ResumeAddDto resumeAddDto){
         return this.resumeService.add(resumeAddDto);
